@@ -2,17 +2,19 @@
 Micropython retro game system built using ESP8266 with either I2C or SPI SSD1306 OLED display, buttons , paddles and sound, game module game8266 makes writing games a lot easier.
 # game8266.py 
 # common micropython module for ESP8266 game board designed by Billy Cheung  2019 08 31
-# --usage--
-
-# set the following line in game8266.py file at the __init__ function
+# 
+# Using this common micropython game module, you can write micropython games to run 
+# either on the SPI OLED or I2C OLED without chaning a line of code.
+# You only need to set the following line in game8266.py file at the __init__ function
 #        self.useSPI = True  # for SPI display , with buttons read through ADC
 #        self.useSPI = False  # for I2C display, and individual hard buttons
 #
-#  esp8266 is very bad at running .py source code files
-# with its very limited CPU onboard memory of 32K 
-# so to run any program with > 300 lines of codes combined (including all modules), you need to convert 
-# source files into byte code first to avoid running out of memory.
-# Type is command to convert game8266.py to the byte code file game8266.mpy  using mpy-cross.
+# Note:  esp8266 is very bad at running .py micropython source code files
+# with its very limited CPU onboard memory of 32K
+# so to run any program with > 300 lines of micropython codes combined (including all modules),
+# you need to convert source files into byte code first to avoid running out of memory.
+# Install a version of the  mpy-cross micropython pre-compiler that can run in your system (available from github).
+# Type this command to convert game8266.py to the byte code file game8266.mpy  using mpy-cross.
 #        mpy-cross game8266.py
 # then copy the game8266.mpy file to the micropython's import directory on the flash
 # create your game and leaverge the functions to display, read buttons and paddle and make sounds
