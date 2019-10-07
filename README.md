@@ -1,7 +1,7 @@
 # game8266-micropython
 Micropython retro game system built using ESP8266 with either I2C or SPI SSD1306 OLED display, buttons , paddles and sound, game module game8266 makes writing games a lot easier.
 # game8266.py 
-# common micropython module for ESP8266 game board designed by Billy Cheung (c) 2019 08 31
+# common micropython module for ESP8266 game board designed by Billy Cheung  2019 08 31
 # --usage--
 
 # set the following line in game8266.py file at the __init__ function
