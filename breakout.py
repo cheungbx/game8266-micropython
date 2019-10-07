@@ -114,7 +114,7 @@ class Ball(object):
 class Brick(object):
     """Brick."""
 
-    def __init__(self, x, y, color, display, width=12, height=2):
+    def __init__(self, x, y, color, display, width=12, height=3):
         """Initialize brick.
 
         Args:
@@ -191,7 +191,7 @@ class Brick(object):
 
     def draw(self):
         """Draw brick."""
-        self.display.fill_rect(self.x, self.y, self.width, self.height, 1)
+        self.display.rect(self.x, self.y, self.width, self.height, 1)
 
 
 class Life(object):

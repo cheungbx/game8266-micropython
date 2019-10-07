@@ -31,7 +31,7 @@ from utime import sleep_ms
 from game8266 import Game8266, Rect
 g=Game8266()
 
-SNAKE_SIZE    = 2
+SNAKE_SIZE    = 4
 SNAKE_LENGTH  = 4
 SNAKE_EXTENT  = 2
 COLS          = 0
@@ -374,13 +374,17 @@ def debugSnake():
 def drawSnake():
     isTimeToBlink = game['time'] % 4 < 2
     color = COLOR_LOST_FG if game['mode'] == MODE_LOST and isTimeToBlink else COLOR_SNAKE
+    h = snake['head']
     n = snake['len']
     for i in range(n):
-        drawDot(snake['x'][i], snake['y'][i], color)
+        if i == h :
+          drawBox(snake['x'][i], snake['y'][i], color)
+        else :
+          drawDot(snake['x'][i], snake['y'][i], color)
 
 def drawSnakeHead():
     h = snake['head']
-    drawDot(snake['x'][h], snake['y'][h], COLOR_SNAKE)
+    drawBox(snake['x'][h], snake['y'][h], COLOR_SNAKE)
 
 def clearSnakeTail():
     h = snake['head']
@@ -392,11 +396,14 @@ def drawScore():
     g.display.text(str(game['score']),50,0,1)
 
 def drawApple():
-    drawDot(apple['x'], apple['y'], COLOR_APPLE)
+    drawBox(apple['x'], apple['y'], COLOR_APPLE)
+    g.display.rect(OX + apple['x']* SNAKE_SIZE + int(SNAKE_SIZE/2), OY + apple['y'] * SNAKE_SIZE-1, 1,1, COLOR_APPLE)
 
 def drawDot(x, y, color):
     g.display.fill_rect(OX + x * SNAKE_SIZE, OY + y * SNAKE_SIZE, SNAKE_SIZE, SNAKE_SIZE,color)
 
+def drawBox(x, y, color):
+    g.display.rect(OX + x * SNAKE_SIZE, OY + y * SNAKE_SIZE, SNAKE_SIZE, SNAKE_SIZE,color)
 
 
 # ----------------------------------------------------------
