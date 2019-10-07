@@ -151,7 +151,7 @@ def handleButtons():
     elif g.justReleased(g.btnA):
         game['mode'] = MODE_START
         g.playTone('f5', 100)
-        if demo :
+        if game['demo'] :
             g.display.fill(0)
             g.display.text('DEMO', 5, 0, 1)
             g.display.text('B to Stop', 5, 30, 1)
