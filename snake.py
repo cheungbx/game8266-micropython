@@ -50,7 +50,8 @@ MODE_START    = 1
 MODE_READY    = 2
 MODE_PLAY     = 3
 MODE_LOST     = 4
-MODE_EXIT     = 5
+MODE_GAMEOVER = 5
+MODE_EXIT     = 6
 
 
 # ----------------------------------------------------------
@@ -79,11 +80,20 @@ def tick():
             game['mode'] = MODE_LOST
             game['refresh'] = True
     elif game['mode'] == MODE_LOST:
-        sleep_ms(2000)
-        game['refresh'] = True
+        game['life'] -= 1
+        if game['life'] <= 0 :
+            game['mode'] = MODE_GAMEOVER
+        sleep_ms(1000)
+        game['mode'] == MODE_START
+    elif game['mode'] == MODE_GAMEOVER:
         game['mode'] = MODE_MENU
+        g.playTone('c4', 100)
+        g.playTone('e4', 100)
+        g.playTone('g4', 100)
+        sleep_ms(1000)
     elif game['mode'] == MODE_MENU:
-        game['refresh'] = True
+        game['life'] = 3
+        game['reset'] = True
     elif game['mode'] == MODE_START:
         # print ("======================")
         game['refresh'] = True
@@ -137,7 +147,6 @@ def handleButtons():
         pass
     elif g.justPressed(g.btnU):
         SNAKE_SIZE = 4 if SNAKE_SIZE == 2 else 6 if SNAKE_SIZE == 4 else 2
-
         g.playTone('c5', 100)
     elif g.justPressed(g.btnR) :
         g.playTone('d5', 100)
@@ -248,15 +257,23 @@ def resetSnake():
     OY            = (g.screenH - ROWS * SNAKE_SIZE) // 2
     x = COLS // SNAKE_SIZE
     y = ROWS // SNAKE_SIZE
-    snake['x'] = []
-    snake['y'] = []
-    for _ in range(SNAKE_LENGTH):
-        snake['x'].append(x)
-        snake['y'].append(y)
-    snake['head'] = SNAKE_LENGTH - 1
-    snake['len']  = SNAKE_LENGTH
     snake['vx'] = 0
     snake['vy'] = 0
+    print (game['reset'])
+    if game['reset'] :
+        game['reset'] = False
+        s = SNAKE_LENGTH
+    else :
+        s = snake['len']
+
+    snake['x'] = []
+    snake['y'] = []
+    for _ in range(s):
+        snake['x'].append(x)
+        snake['y'].append(y)
+        snake['head'] = SNAKE_LENGTH - 1
+        snake['len']  = SNAKE_LENGTH
+
 
 def dirSnake(dx, dy):
     snake['vx'] = dx
@@ -318,7 +335,8 @@ def draw():
         drawGameMenu()
     else :
         if game['mode'] == MODE_LOST:
-            drawGameover()
+            if game['life'] == 0 :
+                drawGameover()
         elif game['refresh']:
             clearScreen()
             drawWalls()
@@ -393,7 +411,7 @@ def clearSnakeTail():
     drawDot(snake['x'][t], snake['y'][t], COLOR_BG)
 
 def drawScore():
-    g.display.text(str(game['score']),50,0,1)
+    g.display.text('S {} L {}'.format(game['score'], game['life'] ),5,0,1)
 
 def drawApple():
     drawBox(apple['x'], apple['y'], COLOR_APPLE)
@@ -414,8 +432,10 @@ def drawBox(x, y, color):
 game = {
     'mode':    MODE_MENU,
     'score':   0,
+    'life':    0,
     'time':    0,
     'refresh': True,
+    'reset':   True,
     'demo':    False
 }
 
