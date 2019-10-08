@@ -23,7 +23,7 @@
 import gc
 import sys
 gc.collect()
-# print (gc.mem_free())
+# # print (gc.mem_free())
 import network
 import utime
 from utime import sleep_ms
@@ -80,18 +80,24 @@ def tick():
             game['mode'] = MODE_LOST
             game['refresh'] = True
     elif game['mode'] == MODE_LOST:
+        # print ('LOST')
         game['life'] -= 1
+
         if game['life'] <= 0 :
             game['mode'] = MODE_GAMEOVER
+        else :
+            game['mode'] = MODE_START
+        # print (game['mode'])
         sleep_ms(1000)
-        game['mode'] == MODE_START
     elif game['mode'] == MODE_GAMEOVER:
+        # print('gameOver')
         game['mode'] = MODE_MENU
         g.playTone('c4', 100)
         g.playTone('e4', 100)
         g.playTone('g4', 100)
         sleep_ms(1000)
     elif game['mode'] == MODE_MENU:
+        # print('Menu')
         game['life'] = 3
         game['reset'] = True
     elif game['mode'] == MODE_START:
@@ -103,6 +109,7 @@ def tick():
         game['score'] = 0
         game['time']  = 0
     elif game['mode'] == MODE_READY:
+        # print ("READY")
         game['refresh'] = False
         moveSnake()
         if snakeHasMoved():
@@ -183,33 +190,33 @@ def handleButtons():
         Hx = snake['x'][h]
         Hy = snake['y'][h]
         #get snake's neck position
-        # print ("h={} {}:{}  C={} R={}".format (h,Hx,Hy, COLS, ROWS))
+        # # print ("h={} {}:{}  C={} R={}".format (h,Hx,Hy, COLS, ROWS))
 
         # move closer to the apple, if smart enough
         if Hx < apple['x'] and smart() and noCrash(Hx+1, Hy):
             dirSnake(1, 0)
-            # print ("A")
+            # # print ("A")
         elif Hx > apple['x'] and smart() and noCrash(Hx-1, Hy):
             dirSnake(-1, 0)
-            # print ("B")
+            # # print ("B")
         elif Hy < apple['y'] and smart() and noCrash(Hx, Hy+1):
             dirSnake(0, 1)
-            # print ("C")
+            # # print ("C")
         elif Hy > apple['y'] and smart() and noCrash(Hx, Hy-1):
             dirSnake(0, -1)
-            # print ("D")
+            # # print ("D")
         elif  noCrash(Hx+1, Hy):
             dirSnake(1, 0)
-            # print ("E")
+            # # print ("E")
         elif noCrash(Hx-1, Hy):
             dirSnake(-1, 0)
-            # print ("F")
+            # # print ("F")
         elif noCrash(Hx, Hy+1):
             dirSnake(0, 1)
-            # print ("G")
+            # # print ("G")
         elif noCrash(Hx, Hy-1):
             dirSnake(0, -1)
-            # print ("H")
+            # # print ("H")
     else :
         if g.justPressed (g.btnL):
             dirSnake(-1, 0)
@@ -259,7 +266,7 @@ def resetSnake():
     y = ROWS // SNAKE_SIZE
     snake['vx'] = 0
     snake['vy'] = 0
-    print (game['reset'])
+    # print (game['reset'])
     if game['reset'] :
         game['reset'] = False
         s = SNAKE_LENGTH
@@ -271,8 +278,8 @@ def resetSnake():
     for _ in range(s):
         snake['x'].append(x)
         snake['y'].append(y)
-        snake['head'] = SNAKE_LENGTH - 1
-        snake['len']  = SNAKE_LENGTH
+        snake['head'] = s - 1
+        snake['len']  = s
 
 
 def dirSnake(dx, dy):
@@ -382,7 +389,7 @@ def debugSnake():
     i = snake['head']
     for _ in range(n):
 
-        # print(snake['x'][i], snake['y'][i])
+        # # print(snake['x'][i], snake['y'][i])
         if (i - 1) < 0 :
             i=n-1
         else :
@@ -411,7 +418,8 @@ def clearSnakeTail():
     drawDot(snake['x'][t], snake['y'][t], COLOR_BG)
 
 def drawScore():
-    g.display.text('S {} L {}'.format(game['score'], game['life'] ),5,0,1)
+    g.display.text('S {}'.format(game['score'] ),5,0,1)
+    g.display.text('L {}'.format( game['life'] ),80,0,1)
 
 def drawApple():
     drawBox(apple['x'], apple['y'], COLOR_APPLE)
