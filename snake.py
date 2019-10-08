@@ -174,14 +174,13 @@ def handleButtons():
             g.display.show()
             sleep_ms(1000)
 
-    elif g.justReleased(g.btnL):
+    elif g.pressed(g.btnU & g.btnD)
         game['mode'] = MODE_EXIT
         g.playTone('g5', 100)
   else :
     if game['demo'] :
         if g.justReleased (g.btnB):
-            game['mode'] = MODE_LOST
-            game['refresh'] = True
+            game['mode'] = MODE_GAMEOVER
             g.playTone('g5', 100)
             g.playTone('f5', 100)
             g.playTone('e5', 100)
@@ -365,9 +364,9 @@ def drawGameMenu():
     g.display.rect(90,0, g.max_vol*4+2,6,1)
     g.display.fill_rect(91,1, g.vol * 4,4,1)
 
-    g.display.text("A START   L EXIT",0,10,1)
+    g.display.text("A START   U+D EXIT",0,10,1)
     if game['demo'] :
-        g.display.text('D DEMO', 0,20, 1)
+        g.display.text('D AI-Player', 0,20, 1)
     else :
         g.display.text('D 1-PLAYER', 0,20, 1)
     g.display.text("U SIZE {}".format(SNAKE_SIZE),0,30,1)

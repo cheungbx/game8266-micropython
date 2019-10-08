@@ -348,7 +348,7 @@ while not exitGame :
         else :
             g.display.text('U Button', 0,20,  1)
         if demo :
-            g.display.text('D Demo', 0,30, 1)
+            g.display.text('D AI-Player', 0,30, 1)
         else :
             g.display.text('D 1-Player', 0,30, 1)
         g.display.text('R Frame/s {}'.format(g.frameRate), 0,40, 1)

@@ -223,7 +223,7 @@ class Pong:
             else :
                 g.display.text('U Button', 0,20,  1)
             if players == 0 :
-                g.display.text('D Demo', 0,30, 1)
+                g.display.text('D AI-Player', 0,30, 1)
             elif players == 1 :
                 g.display.text('D 1-Player', 0,30, 1)
             else :
