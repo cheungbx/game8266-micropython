@@ -22,7 +22,17 @@ Micropython retro game system built using ESP8266 with either I2C or SPI SSD1306
 # Add this line to your micropython game source code (examples attached, e.g. invader.py)
 #       from game8266 import Game8266, Rect
 #       g=Game8266()
-#
+#-----------------------------------------
+# list of games
+#-----------------------------------------
+# menus.py - menu system that should be called by main.py to be the first program running when boot up.
+# this will be the launcher for other games.
+# btntests.py - button , paddle and beeper testing tool
+# invaders.py - space invaders
+# snakes.py - snakes biting apple game
+# pongs.py - 1 and 2 player ping pong game
+# brekouts.py - brick game
+# tetris.py - the famouse Russia blocks game#
 #
 #-----------------------------------------
 # SPI version of game board layout
