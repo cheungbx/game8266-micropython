@@ -2,9 +2,9 @@
 Micropython retro game system built using ESP8266 with either I2C or SPI SSD1306 OLED display, buttons , paddles and sound, game module game8266 makes writing games a lot easier.
 
 Demonstration video.
-https://youtu.be/CinJb7gifH8
+https://youtu.be/0Bl0bkTdha4
 
-[![ESP8266%20Arduboy%20Video](https://github.com/cheungbx/esp8266_arduboy2/blob/master/ESP8266%20Arduboy%20Video.jpg)](https://youtu.be/CinJb7gifH8)
+[![Game8266%20Video](https://github.com/cheungbx/game8266-micropython/blob/master/youtube1.jpg)](https://youtu.be/0Bl0bkTdha4)
 
 # game8266.py 
 # common micropython module for ESP8266 game board designed by Billy Cheung  2019 08 31
@@ -44,7 +44,7 @@ https://youtu.be/CinJb7gifH8
 # SPI version of game board layout
 # ----------------------------------------
 
-![ESP8266%20Arduboy](https://github.com/cheungbx/esp8266_arduboy2/blob/master/ESP8266%20Arduboy.jpg) 
+![Game8266%20SPI](https://github.com/cheungbx/game8266-micropython/blob/master/game8266SPI.jpg) 
 
 # micropython game hat module to use SSD1306 SPI OLED, 6 buttons and a paddle
 # SPI display runs 5 times faster than I2C  display in micropython and you need this speeds
@@ -88,7 +88,7 @@ https://youtu.be/CinJb7gifH8
 #-----------------------------------------
 # I2C version of game board layout
 # ----------------------------------------
-![ESP8266%20Arduboy](https://github.com/cheungbx/esp8266_arduboy2/blob/master/ESP8266%20Arduboy.jpg) 
+![Game8266%20I2C](https://github.com/cheungbx/game8266-micropython/blob/master/game8266_I2C.jpg) 
 # mocropython game hat module to use SSD1306 I2C OLED, 6 buttons and a paddle
 # I2C display runs 5 times slower than I2C display in micropython.
 # Games with many moving graphics (e.g. space invdader, breakout) will run slower.
