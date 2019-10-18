@@ -39,6 +39,8 @@ https://youtu.be/0Bl0bkTdha4
 # pongs.py - 1 and 2 player ping pong game
 # brekouts.py - brick game
 # tetris.py - the famouse Russia blocks game#
+# lhts - temperature and humidity sensor using SHT20 and lux meter u
+# distance - laser distance sensor using vl53l0x 
 #
 #-----------------------------------------
 # SPI version of game board layout
