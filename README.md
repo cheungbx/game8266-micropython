@@ -1,4 +1,12 @@
 # game8266-micropython
+
+Note: This version is outdated.
+Please refer to my latest github for gameESP-micropython that has been enhanced to support background music, ESP32 and other functions.
+
+https://github.com/cheungbx/gameESP-micropython
+
+
+
 Micropython retro game system built using ESP8266 with either I2C or SPI SSD1306 OLED display, buttons , paddles and sound, game module game8266 makes writing games a lot easier.
 
 Demonstration video.
